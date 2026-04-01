@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Contador de Consonantes y vocales</h1>
+    <label>Introduce una frase</label>
+    <input type="text" id="palabra">
+    <br>
+    <button type="button" onclick="contarVocalesConsonantes()">Calcular</button>
+    <br>
+    <p></p>
+    <script>
+
+        function contarVocalesConsonantes() {
+            let texto = document.querySelector("#palabra").value;
+            if (!texto) {
+                alert("No has introducido texto.");
+                
+            }
+            let vocales = texto.match(/[aeiouáéíóú]/gi) || [];
+            let consonantes = texto.match(/[bcdfghjklmnñpqrstvwxyz]/gi) || [];
+            document.querySelector("p").innerHTML=(`Vocales: ${vocales.length}, Consonantes: ${consonantes.length}`);
+        }
+    </script>
+</body>
+</html>

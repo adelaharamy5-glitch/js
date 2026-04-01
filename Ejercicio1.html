@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Verifica Acceso al Cine</h1>
+     <label>Categoria de Edad</label>
+     <label>Ingrese la edad</label>
+    <input type="text" ><button type="submit" onclick="Categoria();">Enviar</button> 
+    <p></p>
+
+
+
+
+    <script>
+ 
+            
+        function Categoria() {
+
+              let edad = document.querySelector("input");
+                  
+              let  edad2 = edad.value;
+              let mensaje2;             
+                if (edad2 < 13) mensaje2 = "Categoria Infantil";
+                if (edad2>=13 && edad2<=17)mensaje2 ="Categoria PG-13";
+                 if (edad2>18)mensaje2 ="Todas las Categorias";
+                document.querySelector("p").innerText= mensaje2;
+
+        };
+    </script>
+</body>
+</html>
