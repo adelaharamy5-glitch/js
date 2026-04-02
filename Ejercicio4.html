@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Contador de Caracteres</h1>
+    <label>Ingrese una palabra o frase</label>
+    <br>
+    <input type="text" id="palabra">
+    <br>
+    <button type="button" onclick="CalcularPalabras()">Enviar</button>
+    <p></p>
+    <script>
+
+        function CalcularPalabras(){
+            let palabra = document.querySelector("#palabra").value;
+            let sinEspacios = palabra.replace(/\s+/g, "");
+            let sines= palabra.replaceAll(' ','');
+            console.log(sinEspacios);
+            console.log(sines);
+            if (sinEspacios=="") document.querySelector("p").innerHTML="Debe de ingresar una palabra o frase";
+            else{
+                document.querySelector("p").innerHTML=`El tamaño de la palabra o frase es de : ${sinEspacios.length}`;
+            }
+
+
+        }
+
+
+
+    </script>
+</body>
+</html>
