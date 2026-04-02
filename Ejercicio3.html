@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Conversor de Temperatura</h1>
+    <label>Ingrese un valor:</label>
+    <br>
+    <input type="text" id="valor">
+    <br>
+    <label>Eliga si es Farenheit o Celsius:</label>
+    <br>
+    Farenheit<input type="checkbox" id="Farenheit">
+    Celsius <input type="checkbox" id="Celsius">
+    <br>
+    <button type="button" onclick="Calcular()">Calcular</button>
+    <br>
+    <p></p>
+
+
+    <script>
+
+        function Calcular(){
+            let valor= document.querySelector("#valor").value;
+            let celsius =document.querySelector("#Celsius").checked;
+            let farenheit =document.querySelector("#Farenheit").checked;
+            let resultado=0;
+            if (celsius==true && farenheit==false){
+                  resultado=Celsius(valor);  
+                   document.querySelector("p").innerHTML=`El valor a Celsius es de: ${resultado} `;
+            }else if (farenheit==true && celsius==false){
+                 resultado=Farenheit(valor);
+                 document.querySelector("p").innerHTML=`El valor a Farenheit es de: ${resultado} `;
+
+            }else if(celsius==true && farenheit==true) document.querySelector("p").innerHTML="Eliga una opcion";
+            
+
+        }
+
+      
+
+        function Celsius(valor1){
+             return ((valor1 - 32) * 0.5556 );
+
+        }
+
+        function Farenheit(valor1){
+                return  ((valor1 * 1.8) + 32 );
+        }
+
+    </script>
+</body>
+</html>
