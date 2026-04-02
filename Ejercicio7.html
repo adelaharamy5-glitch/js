@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <label>Ingrese el primer numero</label>
+    <input type="text" id="num1">
+    <br>
+    <label>Ingrese el segundo numero</label>
+    <input type="text" id="num2">
+    <br>
+    <button type="button" onclick="Calcular()">Enviar</button>
+    <p></p>
+    <script>
+
+
+            function Calcular(){
+                document.querySelector("p").innerHTML="";
+                let numero1=document.querySelector("#num1").value;
+                let numero2=document.querySelector("#num2").value;
+                let suma=0;
+                let resta=0;
+                let resto=0;
+                let multiplicacion=0;
+                let dividir=0;
+                let potencia=0;
+                suma=Suma(numero1,numero2);
+                resta=Resta(numero1,numero2);
+                multiplicar=Multiplicacion(numero1,numero2);
+                resto=Resto(numero1,numero2);
+                dividir=Division(numero1,numero2);
+                potencia=Potencia(numero1,numero2);
+                document.querySelector("p").innerHTML+=`La suma de ${numero1} y ${numero2}`
+                document.querySelector("p").innerHTML+=` es: ${suma}`;
+                document.querySelector("p").innerHTML+="<br>"
+                document.querySelector("p").innerHTML+=`La resta de ${numero1} y ${numero2}`
+                document.querySelector("p").innerHTML+=` es: ${resta}`;
+                document.querySelector("p").innerHTML+="<br>"
+                document.querySelector("p").innerHTML+=`La multiplicacion de ${numero1} y ${numero2}`
+                document.querySelector("p").innerHTML+=` es: ${multiplicar}`;
+                document.querySelector("p").innerHTML+="<br>"
+                document.querySelector("p").innerHTML+=`La division de ${numero1} y ${numero2}`
+                document.querySelector("p").innerHTML+=` es: ${dividir}`;
+                document.querySelector("p").innerHTML+="<br>"
+                document.querySelector("p").innerHTML+=`El resto de ${numero1} y ${numero2}`
+                document.querySelector("p").innerHTML+=` es: ${resto}`;
+                document.querySelector("p").innerHTML+="<br>"
+                document.querySelector("p").innerHTML+=`La potencia de ${numero1} y ${numero2}`
+                document.querySelector("p").innerHTML+=` es: ${potencia}`;
+                                    
+            
+            
+            
+            }
+            function Suma(valor1,valor2){
+
+                return (parseInt(valor1)+parseInt(valor2));
+
+
+            }
+            function Resta(valor1,valor2){
+
+                return (parseInt(valor1)-parseInt(valor2));
+
+
+            }
+
+            function Multiplicacion(valor1,valor2){
+
+                return (parseInt(valor1)*parseInt(valor2));
+
+
+            }
+
+            function Division(valor1,valor2){
+
+                return (parseInt(valor1)/parseInt(valor2));
+
+
+            }
+
+            
+            function Resto(valor1,valor2){
+
+                return (parseInt(valor1)%parseInt(valor2));
+
+
+            }
+
+            
+            function Potencia(valor1,valor2){
+
+                return (parseInt(valor1)**parseInt(valor2));
+
+
+            }
+   </script> 
+</body>
+</html>
