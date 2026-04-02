@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <script>
+    let libros=[
+             {titulo:"1985", autor:"orwell", ano_publicacion:1969, paginas:200},
+             {titulo:"Ciencias", autor:"roswell", ano_publicacion:2000, paginas:100},
+             {titulo:"Javascript", autor:"antony", ano_publicacion:2020, paginas:250},
+             {titulo:"HTML", autor:"antony", ano_publicacion:2020, paginas:195},
+             {titulo:"CSS", autor:"antony", ano_publicacion:2020, paginas:145},
+             {titulo:"HTML & CSS", autor:"antony", ano_publicacion:2020, paginas:178},
+             {titulo:"Javascript desde cero", autor:"antony", ano_publicacion:2020, paginas:165},
+          ];
+          
+         for(let e of libros){
+            document.querySelector("p").innerHTML+=`${e.titulo} ${e.autor} ${e.ano_publicacion} ${e.paginas} `;
+            document.querySelector("p").innerHTML+="<br>";
+        }
+            document.querySelector("p").innerHTML+="<br>";
+            document.querySelector("p").innerHTML+="El primer libro: ";
+            document.querySelector("p").innerHTML+=`${libros[0].titulo} ${libros[0].autor} ${libros[0].ano_publicacion} ${libros[0].paginas}  `;
+            document.querySelector("p").innerHTML+="<br>";
+
+
+            document.querySelector("p").innerHTML+="<br>";
+            document.querySelector("p").innerHTML+="El ultimo libro: ";
+            document.querySelector("p").innerHTML+=`${libros[libros.length-1].titulo} ${libros[libros.length-1].autor} ${libros[libros.length-1].ano_publicacion} ${libros[libros.length-1].paginas}  `;
+            document.querySelector("p").innerHTML+="<br>";
+
+            document.querySelector("p").innerHTML+="<br>";
+            document.querySelector("p").innerHTML+="El del Medio libro: ";
+            document.querySelector("p").innerHTML+=`${libros[parseInt((libros.length-1)/2)].titulo} ${libros[parseInt((libros.length-1)/2)].autor} ${libros[parseInt((libros.length-1)/2)].ano_publicacion} ${libros[parseInt((libros.length-1)/2)].paginas}  `;
+            document.querySelector("p").innerHTML+="<br>";
+    </script>
+</body>
+</html>
