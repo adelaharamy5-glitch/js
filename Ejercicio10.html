@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Arreglos</h1>
+    <p></p>
+    <script>
+            let numeros=[];
+            numeros=[15,80,650,50.30,-10];
+            console.log(numeros);
+            document.querySelector("p").innerHTML=numeros;
+            document.querySelector("p").innerHTML+="<br>";
+            document.querySelector("p").innerHTML+= `Primer numero:  ${numeros[0]}`;
+        /*    numeros[0]=20;
+            document.querySelector("p").innerHTML=numeros;
+            document.querySelector("p").innerHTML+="<br>";
+            document.querySelector("p").innerHTML+= `Primer numero:  ${numeros[0]}`;
+        */
+            document.querySelector("p").innerHTML+="<br>";    
+            document.querySelector("p").innerHTML+= `Ultimo numero:  ${numeros[numeros.length-1]}`;
+             document.querySelector("p").innerHTML+="<br>"; 
+            document.querySelector("p").innerHTML+= `el del Medio numero:  ${numeros[parseInt((numeros.length-1)/2)]}`;
+            document.querySelector("p").innerHTML+="<br>";    
+            document.querySelector("p").innerHTML+= `Cantidad de numero:  ${numeros.length}`; 
+            
+    </script>
+</body>
+</html>
