@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Aplicacion de impuestos y descuentos</h1>
+    <label>Ingrese edad del cliente:</label>
+    <br>
+    <input type="text" id="edad">
+    <br>
+    <label>Cantidad Comprada</label>
+    <br>
+    <input type="text" id="cantidad">
+    <br>
+    <label>Dia de la semana:</label>
+    <br>
+    <select id="select">
+        <option value="lunes">Lunes</option>
+        <option value="martes">Mates</option>
+        <option value="miercoles">Miercoles</option>
+        <option value="jueves">Jueves</option>
+        <option value="viernes">Viernes</option>
+    </select>
+    <button type="button" onclick="Calcular()">Calcular</button>
+    <p></p>
+
+    <script>
+        function Calcular(){
+             document.querySelector("p").innerHTML="";
+            let edad =document.querySelector("#edad").value;
+            let cantidad =document.querySelector("#cantidad").value;
+            let dia= document.querySelector("select").value;
+            let impuesto=0;
+            let descuento=0;
+            let total_pagar=0;
+
+            if (edad<18){
+                impuesto=15;
+            }else if (edad>65){
+                descuento=10;
+            }
+
+            if (cantidad>10 && cantidad<20){
+                descuento +=5;
+            }
+            if (cantidad>20 && cantidad<50){
+                descuento+=10;
+            }
+            if (cantidad>50){
+                descuento+=15;
+            }
+
+            if (dia=="miercoles"){
+
+                descuento+=3;
+            }
+            
+                document.querySelector("p").innerHTML+=`impuesto : ${impuesto}`;
+                document.querySelector("p").innerHTML+="<br>"
+                document.querySelector("p").innerHTML+=`descuento : ${descuento}`;
+                document.querySelector("p").innerHTML+="<br>"
+                document.querySelector("p").innerHTML+=`monto : ${cantidad}`;
+                document.querySelector("p").innerHTML+="<br>"
+                impuesto=cantidad*(impuesto/100);
+                descuento=cantidad*(descuento/100);
+                total_pagar=parseFloat(cantidad)+(impuesto-descuento);
+                console.log(impuesto);
+                console.log(descuento);
+                console.log(total_pagar);
+                 document.querySelector("p").innerHTML+=`Total a pagar : ${total_pagar}`;
+                document.querySelector("p").innerHTML+="<br>"
+                 document.querySelector("p").innerHTML+=`dia : ${dia}`;
+        }   
+    </script>
+</body>
+</html>
