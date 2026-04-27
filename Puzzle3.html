@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <h3>Imagen de referencia:</h3>
+    <img id="imagen">
+
+    <hr>
+    
+    <h3>Tablero (Suelta las piezas aquí):</h3>
+    <div id="tablero"
+        style="display: grid; grid-template-columns: repeat(4, 125px); gap: 2px; background: #eee; width: 508px; height: auto;">
+        <!-- Aquí se generarán los 12 huecos dinámicamente -->
+    </div>
+
+    <h3>Piezas:</h3>
+    <div id="piezas-sueltas" style="display: flex; flex-wrap: wrap; gap: 10px; min-height: 150px;">
+        <!-- Aquí aparecerán las piezas desordenadas -->
+    </div>
+
+
+
+    <script>
+
+
+
+        const totalPiezas = 12;
+        const filas = 3;
+        const columnas = 4;
+        const aleatorio = Math.floor(Math.random() * 10) + 1;
+
+        // 1. Configurar imagen de referencia
+        let imagenRef = document.querySelector("#imagen");
+        imagenRef.style.width = "500px";
+        imagenRef.src = `imagenes/imagen${aleatorio}.jpg`;
+
+        // 2. Crear los HUECOS en el tablero
+        const tablero = document.getElementById("tablero");
+        for (let i = 1; i <= totalPiezas; i++) {
+            let hueco = document.createElement("div");
+            hueco.id = `hueco-${i}`;
+            hueco.style.width = "125px";
+            hueco.style.height = "125px";
+            hueco.style.border = "1px dashed #ccc";
+
+            // Eventos para permitir soltar (Drop)
+            hueco.addEventListener("dragover", e => e.preventDefault());
+            hueco.addEventListener("drop", manejarDrop);
+
+            tablero.appendChild(hueco);
+        }
+
+        // 3. Crear las PIEZAS desordenadas
+        let indices = Array.from({ length: totalPiezas }, (_, i) => i + 1);
+        indices.sort(() => Math.random() - 1);
+
+        const contenedorPiezas = document.getElementById("piezas-sueltas");
+
+        indices.forEach(indice => {
+            let img = document.createElement("img");
+            let r = Math.ceil(indice / columnas);
+            let c = (indice % columnas) || columnas;
+
+            img.id = `pieza-${indice}`; // El ID nos dice qué pieza es
+            img.src = `divididas/imagen${aleatorio}_r${r}_c${c}.jpg`;
+            img.style.width = "125px";
+            img.draggable = true;
+
+            img.addEventListener("dragstart", e => {
+                e.dataTransfer.setData("id_pieza", e.target.id);
+            });
+
+            contenedorPiezas.appendChild(img);
+        });
+
+        // 4. Lógica del DESTINO (Manejar el Drop)
+        function manejarDrop(e) {
+            e.preventDefault();
+            const idPieza = e.dataTransfer.getData("id_pieza");
+            const pieza = document.getElementById(idPieza);
+
+            // Obtenemos el número de la pieza y del hueco
+            const numPieza = idPieza.split("-")[1];
+            const numHueco = e.target.id.split("-")[1];
+
+            // Si el hueco está vacío y es el correcto (o simplemente si quieres dejarlo caer)
+            if (e.target.tagName !== "IMG") {
+                if (numPieza === numHueco) {
+                    e.target.appendChild(pieza);
+                    pieza.style.width = "100%"; // Ajustar al tamaño del hueco
+                    console.log("¡Correcto!");
+                } else {
+                    alert("Esa pieza no va ahí");
+                }
+            }
+
+            // Opcional: Verificar si el puzzle está completo
+            if (tablero.querySelectorAll("img").length === totalPiezas) {
+                alert("¡Felicidades! Puzzle completado.");
+            }
+        }
+    </script>
+</body>
+
+</html>
