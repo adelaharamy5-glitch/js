@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+article {
+    width: 150px; /* Ancho fijo para contener los círculos de 120px */
+    padding: 15px 0; /* Espacio arriba y abajo */
+    background-color: #222; /* Un negro más suave parece más realista */
+    border-radius: 20px;
+    position: absolute;
+    left: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra las luces horizontalmente */
+    gap: 10px; /* Espacio uniforme entre luces */
+}
+
+section {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    opacity: 0.3; 
+    transition: opacity 0.3s; /* Esto hace que el cambio de luz sea suave */
+}
+
+/* Clases de estado (se aplicarán por JS) */
+.rojo { background-color: red; }
+.amarillo { background-color: yellow; }
+.verde { background-color: green; }
+</style>
+<body>
+    <article>
+    <section class="rojo" id="1"></section>
+    <section class="amarillo" id="2"></section>
+    <section class="verde" id="3"></section>
+    </article>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+<script>
+const luces = {
+    rojo: document.getElementById("1"),
+    amarillo: document.getElementById("2"),
+    verde: document.getElementById("3")
+};
+
+function apagarTodo() {
+    luces.rojo.style.opacity = 0.3;
+    luces.amarillo.style.opacity = 0.3;
+    luces.verde.style.opacity = 0.3;
+}
+
+function iniciarSemaforo() {
+    // 1. Rojo
+    apagarTodo();
+    luces.rojo.style.opacity = 1;
+    
+    setTimeout(() => {
+        // 2. Verde (después de 5s)
+        apagarTodo();
+        luces.verde.style.opacity = 1;
+        
+        setTimeout(() => {
+            // 3. Amarillo (después de 5s)
+            apagarTodo();
+            luces.amarillo.style.opacity = 1;
+            
+            setTimeout(() => {
+                // 4. Reiniciar ciclo (después de 2s)
+                iniciarSemaforo();
+            }, 2000);
+            
+        }, 5000);
+        
+    }, 5000);
+}
+
+iniciarSemaforo();
+
+
+
+   /* 
+
+
+   function Semaforo_EncenderRojo(rojo,verde,amarillo){
+      const intervalo=setInterval(()=>{
+            segundos+=1;
+                    document.getElementsByClassName("rojo").style.opacity=rojo;
+                    document.getElementsByClassName("amarillo").style.opacity=amarillo;
+                    document.getElementsByClassName("verde").style.opacity=verde;
+           
+        },5000);
+}
+    Semaforo_EncenderRojo(1,1,0);
+    const amarillo=setTimeout(()=>{
+                    document.querySelector("#1").style.opacity=0;
+                    document.querySelector("#2").style.opacity=0;
+                    document.querySelector("#3").style.opacity=0;
+    },5000)// tiempo en milisegundos      
+
+    const verde=setTimeout(()=>{
+                    document.querySelector("#1").style.opacity=0;
+                    document.querySelector("#2").style.opacity=0;
+                    document.querySelector("#3").style.opacity=0;
+     },5000)// tiempo en milisegundos
+    */
+</script>
+</html>
